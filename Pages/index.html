@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Created by CistusF" />
+    <link rel="stylesheet" href="/css/home.css">
+    <title>API Playground</title>
+</head>
+
+<body>
+    <header class="header">
+        <h1 class="title">API Playground</h1>
+        <h4 class="description">CistusF's API land.</h4>
+    </header>
+    <div class="container">
+    </div>
+    <script type="text/javascript">
+        const API_List = [
+            {
+                title: "Random Dog",
+                description: "Shows random pictures of dogs raised by CistusF.",
+                url: "/api/dog"
+            },
+            // {
+            //     title: "Random Music",
+            //     description: "Shows random music from youtube.\ncreated by CistusF",
+            //     url: "/api/music"
+            // }
+        ];
+
+        const container = document.querySelector(".container");
+        API_List.map(({ title, description, url }) => {
+            const boxElement = document.createElement("div");
+            const titleElement = document.createElement("h3");
+            const descriptionElement = document.createElement("h5");
+            const buttonElement = document.createElement("div");
+
+            boxElement.className = "box";
+
+            titleElement.className = "title";
+            titleElement.innerText = title;
+
+            descriptionElement.className = "description";
+            descriptionElement.innerText = description;
+
+            buttonElement.className = "button";
+            buttonElement.innerText = "Try it!";
+            buttonElement.onclick = () => {
+                location.href = url;
+            };
+
+            boxElement.appendChild(titleElement);
+            boxElement.appendChild(descriptionElement);
+            boxElement.appendChild(buttonElement);
+
+            container.appendChild(boxElement);
+        });
+
+    </script>
+</body>
+
+</html>

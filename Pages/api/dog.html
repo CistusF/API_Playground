@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Created by CistusF" />
+    <link rel="stylesheet" href="/css/dog.css">
+    <title>Random Dog</title>
+</head>
+
+<body>
+    <header class="header" onclick="location.href = '/'">
+        <h1 class="title">Random Dog</h1>
+        <h4 class="description">API Playground</h4>
+    </header>
+    <div class="container">
+        <div class="about">
+            <h1 class="title"></h1>
+            <h4 class="description">Method : POST</h4>
+            <div class="Data">
+                <h2 class="title">Data returns</h2>
+                <pre></pre>
+            </div>
+        </div>
+        <button class="button" onclick="getPic()">Get Pic</button>
+        <div>
+            <img class="img" />
+        </div>
+    </div>
+    <script>
+        const titleElement = document.querySelector(".container > .about > .title");
+        const returnData = document.querySelector("pre");
+        const imgElement = document.querySelector("img");
+
+        titleElement.innerHTML = "API : " + location.protocol + "://" + location.hostname + "/api/dog/v1"
+
+        const getPic = () => {
+            const request = fetch("/api/dog/v1/",
+                {
+                    method: "POST"
+                });
+            request.catch((e) => {
+                console.log(e);
+            }).then(async data => {
+                const json = await data.json();
+                returnData.innerText = JSON.stringify(json);
+                imgElement.src = json.pic;
+            });
+        };
+        getPic();
+    </script>
+</body>
+
+</html>
